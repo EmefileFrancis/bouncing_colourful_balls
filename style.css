@@ -1,0 +1,10 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  font-family: Helvetica, verdana, sans-serif;
+  overflow: hidden;
+}
+
+h1{
+  text-align: right;
+}
