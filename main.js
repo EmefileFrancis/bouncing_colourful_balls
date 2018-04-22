@@ -1,3 +1,21 @@
+require.config({
+  baseUrl: './',
+  packages: [
+    {
+      name: 'physicsjs',
+      location: '/PhysicsJS',
+      main: 'physicsjs-0.7.0.min'
+    }
+  ],
+});
+
+//require(['physicsjs'], function(Physics){
+  //Physics(function(){
+    //var world = this;
+  //});
+//});
+
+
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d'); //This gets the drawing area on the canvas
 
@@ -13,14 +31,22 @@ function random(min, max) {
   return num;
 }
 
-function Ball(x, y , velX, velY, color, size){
+function Shape(x, y , velX, velY, exists){
   this.x = x;
   this.y = y;
   this.velX = velX;
   this.velY = velY;
+  this.exists = exists;
+}
+
+function Ball(x, y, velX, velY, exists, color, size){
+  Shape.call(this, x, y, velX, velY, exists);
   this.color = color;
   this.size = size;
 }
+
+Ball.prototype = Object.create(Shape.prototype);
+Ball.prototype.constructor = Ball;
 
 /*
 *method draw() draws a Ball on the canvas
@@ -87,6 +113,7 @@ function loop() {
       random(0, height),
       random(-7, 7),
       random(-7, 7),
+      true,
       'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) + ')',
       random(10, 20)
     );
