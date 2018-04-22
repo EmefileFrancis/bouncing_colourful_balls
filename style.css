@@ -12,3 +12,11 @@ body{
 h1{
   text-align: right;
 }
+
+p{
+  position: absolute;
+  top: 55px;
+  right: 5px;
+  margin: 0;
+  color: #aaa;
+}
